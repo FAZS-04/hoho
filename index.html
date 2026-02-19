@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversary Memories</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  background: linear-gradient(135deg,#fdf2f4,#fce7eb,#f8d7dc);
+  font-family:'Cormorant Garamond', serif;
+  overflow-x:hidden;
+  position:relative;
+}
+
+.background-hearts{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+.background-hearts .love-heart{
+  position:absolute;
+  font-size:1.5rem;
+  color:#ff7bac;
+  opacity:0.4;
+  pointer-events:none;
+  animation:floatHeart linear forwards;
+}
+@keyframes floatHeart{
+  0% { transform: translateY(100%); opacity:0.4; }
+  50% { opacity:0.6; }
+  100% { transform: translateY(-150%); opacity:0; }
+}
+
+#game-screen{
+  position:fixed;
+  inset:0;
+  background:#2f2f2f;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  color:white;
+  font-family:'Press Start 2P', cursive;
+  text-align:center;
+}
+
+canvas{
+  background:#3b3b3b;
+  border:4px solid #ffffff;
+}
+
+#analog-stick{
+  position:fixed;
+  bottom:40px;
+  left:40px;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.2);
+  touch-action: none;
+  z-index:10000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#analog-thumb{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background: rgba(255,255,255,0.5);
+  position:absolute;
+  left:25px;
+  top:25px;
+  pointer-events:none;
+}
+
+.photo-card{
+  background:white;
+  border-radius:20px;
+  padding:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.photo-card img{
+  width:100%;
+  height:auto;
+  border-radius:15px;
+}
+.photo-card .caption{
+  margin-top:8px;
+  text-align:center;
+  font-size:0.95rem;
+  color:#ff4d87;
+  font-weight:600;
+}
+.photo-card:hover{
+  transform:translateY(-8px);
+}
+
+.gallery-heart{
+  position:absolute;
+  font-size:1.2rem;
+  color:#ff7bac;
+  opacity:0.3;
+  animation:floatHeartGallery linear forwards;
+  pointer-events:none;
+}
+
+@keyframes floatHeartGallery{
+  0% { transform: translateY(100%); opacity:0.3; }
+  50% { opacity:0.5; }
+  100% { transform: translateY(-150%); opacity:0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background-hearts"></div>
+
+<div id="game-screen">
+  <h1 style="font-size:28px;margin-bottom:20px;">SNAKE GAME</h1>
+  <p style="margin-bottom:20px;">MAKAN 3 APEL UNTUK LANJUT</p>
+  <canvas id="snake-canvas" width="400" height="400"></canvas>
+  <p style="margin-top:20px;">APEL: <span id="apple-count">0</span>/3</p>
+</div>
+
+<div id="analog-stick">
+  <div id="analog-thumb"></div>
+</div>
+
+<header class="text-center py-12">
+  <h1 class="text-5xl font-bold text-pink-700">Ist Anniversary</h1>
+  <p class="text-xl text-pink-500">19 Februari 2026</p>
+</header>
+
+<section class="max-w-6xl mx-auto px-4 py-10 relative">
+  <h2 class="text-center text-3xl font-semibold mb-10 text-pink-700">Galeri Kenangan Selama Satu Tahun 📸</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <div class="photo-card">
+      <img src="d:\coding\anniversary\images\1.jpeg" alt="Sabtu, 5 Juli 2025">
+      <div class="caption">📅 Sabtu, 5 Juli 2025 🎊🎪🍜🍦</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="d:\coding\anniversary\images/2.jpeg" alt="Sabtu, 23 Agustus 2025">
+      <div class="caption">📅 Sabtu, 23 Agustus 2025 🤍</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="d:\coding\anniversary\images/3.jpeg" alt="Jumat, 26 September 2025">
+      <div class="caption">📅 Jumat, 26 September 2025 🖤</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="d:\coding\anniversary\images/4.jpeg" alt="Senin, 6 Oktober 2025">
+      <div class="caption">📅 Senin, 6 Oktober 2025 👻</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="d:\coding\anniversary\images/5.jpeg" alt="Sabtu, 11 Oktober 2025">
+      <div class="caption">📅 Sabtu, 11 Oktober 2025 🦗</div>
+    </div>
+
+    <div class="photo-card">
+      <img src="d:\coding\anniversary\images/6.jpeg" alt="Selasa, 10 Februari 2026">
+      <div class="caption">📅 Selasa, 10 Februari 2026</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="text-center py-12 relative">
+  <p class="text-2xl italic text-pink-700">
+    "Setiap hari bersamamu adalah hadiah terindah."
+  </p>
+</section>
+
+<audio id="bg-music" loop>
+  <source src="d:\coding\anniversary\music\1.mpeg" type="audio/mpeg">
+</audio>
+
+<script>
+// (Sisa script JavaScript tetap sama)
+function createBackgroundHeart(){
+  const container = document.querySelector('.background-hearts');
+  const heart = document.createElement('div');
+  heart.className='love-heart';
+  heart.textContent='💗';
+  heart.style.left = Math.random()*100+'%';
+  heart.style.fontSize = (Math.random()*24+16)+'px';
+  heart.style.animationDuration = (5+Math.random()*3)+'s';
+  container.appendChild(heart);
+  setTimeout(()=>container.removeChild(heart),8000);
+}
+setInterval(createBackgroundHeart, 400);
+
+function createGalleryHeart(){
+  const container = document.querySelector('section');
+  const heart = document.createElement('div');
+  heart.className='gallery-heart';
+  heart.textContent='💗';
+  heart.style.left = Math.random()*100+'%';
+  heart.style.top = '100%';
+  heart.style.fontSize = (Math.random()*20+12)+'px';
+  heart.style.animationDuration = (6+Math.random()*3)+'s';
+  container.appendChild(heart);
+  setTimeout(()=>container.removeChild(heart),9000);
+}
+setInterval(createGalleryHeart, 600);
+
+const canvas = document.getElementById('snake-canvas');
+const ctx = canvas.getContext('2d');
+const gameScreen = document.getElementById('game-screen');
+const music = document.getElementById('bg-music');
+
+const gridSize = 20;
+const tileCount = canvas.width / gridSize;
+
+let snake = [{x:10,y:10}];
+let direction = {x:1,y:0};
+let nextDirection = {x:1,y:0};
+let apple = randomApple();
+let applesEaten = 0;
+let gameRunning = true;
+
+function randomApple(){
+  return {x:Math.floor(Math.random()*tileCount), y:Math.floor(Math.random()*tileCount)};
+}
+
+function updateGame(){
+  if(!gameRunning) return;
+  direction = nextDirection;
+  const head = {x:(snake[0].x + direction.x + tileCount) % tileCount,
+                y:(snake[0].y + direction.y + tileCount) % tileCount};
+  snake.unshift(head);
+  if(head.x===apple.x && head.y===apple.y){
+    applesEaten++;
+    document.getElementById("apple-count").textContent=applesEaten;
+    if(applesEaten>=3) finishGame();
+    apple = randomApple();
+  }else snake.pop();
+}
+
+function drawGame(){
+  ctx.fillStyle="#3b3b3b";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  snake.forEach((s,index)=>{
+    ctx.fillStyle = index===0 ? "#ffffff" : "#aaaaaa";
+    ctx.fillRect(s.x*gridSize,s.y*gridSize,gridSize-2,gridSize-2);
+  });
+  ctx.fillStyle="#bbbbbb";
+  ctx.fillRect(apple.x*gridSize+4,apple.y*gridSize+4,gridSize-8,gridSize-8);
+}
+
+function gameLoop(){ updateGame(); drawGame(); setTimeout(gameLoop,100); }
+
+function finishGame(){
+  gameRunning=false;
+  setTimeout(()=>{
+    gameScreen.style.display="none";
+    music.volume=0.6;
+    music.play().catch(()=>{});
+  },500);
+}
+
+document.addEventListener("keydown",(e)=>{
+  const key=e.key.toLowerCase();
+  if(["arrowup","w"].includes(key) && direction.y===0) nextDirection={x:0,y:-1};
+  if(["arrowdown","s"].includes(key) && direction.y===0) nextDirection={x:0,y:1};
+  if(["arrowleft","a"].includes(key) && direction.x===0) nextDirection={x:-1,y:0};
+  if(["arrowright","d"].includes(key) && direction.x===0) nextDirection={x:1,y:0};
+});
+
+const analog = document.getElementById('analog-stick');
+const thumb = document.getElementById('analog-thumb');
+let dragging=false;
+
+function setDirection(dx,dy){
+  if(Math.abs(dx) > Math.abs(dy)){
+    nextDirection = dx>0 ? {x:1,y:0} : {x:-1,y:0};
+  }else{
+    nextDirection = dy>0 ? {x:0,y:1} : {x:0,y:-1};
+  }
+}
+
+analog.addEventListener('touchstart',(e)=>{
+  dragging=true;
+});
+analog.addEventListener('touchend',(e)=>{
+  dragging=false;
+  thumb.style.left='25px';
+  thumb.style.top='25px';
+});
+analog.addEventListener('touchmove',(e)=>{
+  if(!dragging) return;
+  const rect = analog.getBoundingClientRect();
+  const touch = e.touches[0];
+  const dx = touch.clientX - (rect.left + rect.width/2);
+  const dy = touch.clientY - (rect.top + rect.height/2);
+
+  let maxMove = rect.width/2 - thumb.offsetWidth/2;
+  let moveX = Math.max(-maxMove, Math.min(dx, maxMove));
+  let moveY = Math.max(-maxMove, Math.min(dy, maxMove));
+
+  thumb.style.left = moveX + rect.width/2 - thumb.offsetWidth/2 + 'px';
+  thumb.style.top = moveY + rect.height/2 - thumb.offsetHeight/2 + 'px';
+
+  setDirection(dx,dy);
+  e.preventDefault();
+});
+
+gameLoop();
+</script>
+
+</body>
+</html>
